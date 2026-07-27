@@ -121,8 +121,8 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div key={index} className="glass-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <h3 className="title-sm" style={{ color: 'var(--text-primary)' }}>{project.title}</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  <h3 className="title-sm" style={{ color: 'var(--text-primary)', wordBreak: 'keep-all', margin: 0 }}>{project.title}</h3>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     {project.links.map((link, idx) => (
                       <a key={idx} href={link.url} target="_blank" rel="noreferrer" className="text-secondary" style={{ padding: '0.25rem' }}>

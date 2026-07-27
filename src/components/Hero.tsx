@@ -72,17 +72,17 @@ const Hero = () => {
             position: 'relative',
             overflow: 'hidden'
           }}>
-            <h2 style={{
+            <h2 className="terminal-text" style={{
               fontFamily: 'monospace',
               fontSize: 'clamp(1.5rem, 4vw, 3rem)',
-              color: '#34d399', /* Mint green terminal text */
+              color: '#34d399',
               fontWeight: 800,
               letterSpacing: '2px',
               margin: 0,
               textShadow: '0 0 10px rgba(52, 211, 153, 0.5)',
               wordBreak: 'keep-all'
             }}>
-              HELLO WORLD!<br />AND I AM KAYOUNG ✌️
+              HELLO WORLD!<span className="hide-on-mobile"><br /></span>AND I AM KAYOUNG ✌️
             </h2>
             
             <div style={{
@@ -99,9 +99,9 @@ const Hero = () => {
 
           {/* Intro Text & Contact */}
           <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-            <p className="text-body" style={{ marginBottom: '2.5rem', fontSize: '1.25rem' }}>
-              대규모 플랫폼의 초기 구조 설계와 실서비스 운영 경험을 바탕으로,<br />
-              커머스·클라우드 서비스에서 <span style={{ color: 'var(--accent)', fontWeight: 500 }}>전환율, 성능, 운영 효율</span>을<br />
+            <p className="text-body" style={{ marginBottom: '2.5rem', fontSize: '1.25rem', wordBreak: 'keep-all' }}>
+              대규모 플랫폼의 초기 구조 설계와 실서비스 운영 경험을 바탕으로,<span className="hide-on-mobile"><br /></span>
+              커머스·클라우드 서비스에서 <span style={{ color: 'var(--accent)', fontWeight: 500 }}>전환율, 성능, 운영 효율</span>을<span className="hide-on-mobile"><br /></span>
               동시에 개선하는 프론트엔드 개발자 <b>손가영</b>입니다.
             </p>
 
