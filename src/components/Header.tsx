@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu } from 'lucide-react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
