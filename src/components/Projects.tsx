@@ -89,7 +89,7 @@ const Projects = () => {
         </h2>
 
         {/* Tab Style Header matching leeboa.com */}
-        <div style={{ 
+        <div className="projects-tabs" style={{ 
           display: 'flex', 
           borderTop: '1px solid var(--border-color)', 
           borderBottom: '1px solid var(--border-color)',
@@ -117,7 +117,7 @@ const Projects = () => {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div className="projects-grid">
           {projects.map((project, index) => (
             <div key={index} className="glass-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <div style={{ flex: 1 }}>

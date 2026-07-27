@@ -30,7 +30,7 @@ const Header = () => {
       className={scrolled ? 'glass' : ''}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+        <div className="header-left" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
             <div style={{ width: '32px', height: '2px', backgroundColor: 'var(--text-primary)' }} />
             <div style={{ width: '32px', height: '2px', backgroundColor: 'var(--text-primary)' }} />
@@ -47,6 +47,7 @@ const Header = () => {
           href="https://velog.io/@ka0son/posts" 
           target="_blank" 
           rel="noreferrer"
+          className="header-btn"
           style={{
             backgroundColor: 'var(--accent-light)',
             color: '#111',

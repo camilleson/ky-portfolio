@@ -105,7 +105,7 @@ const Hero = () => {
               동시에 개선하는 프론트엔드 개발자 <b>손가영</b>입니다.
             </p>
 
-            <div style={{ 
+            <div className="hero-contact" style={{ 
               display: 'flex', 
               flexWrap: 'wrap', 
               justifyContent: 'center', 

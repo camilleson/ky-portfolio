@@ -8,7 +8,7 @@ const Footer = () => {
       marginTop: '4rem',
       backgroundColor: 'transparent'
     }}>
-      <div className="container" style={{
+      <div className="container footer-content" style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
@@ -22,13 +22,13 @@ const Footer = () => {
         </div>
         
         {/* Right Side: Links & Copyright */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2rem' }}>
+        <div className="footer-right" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2rem' }}>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <a href="#about" className="text-small" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-primary)' }}>🏠 Home</a>
             <a href="#projects" className="text-small" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-primary)' }}>📁 Project</a>
             <a href="#experience" className="text-small" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-primary)' }}>🎁 About</a>
           </div>
-          <p className="text-small text-muted" style={{ textAlign: 'right' }}>
+          <p className="text-small text-muted footer-copyright" style={{ textAlign: 'right' }}>
             ©2026 Kayoung. All Rights Reserved.
           </p>
         </div>
