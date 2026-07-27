@@ -218,3 +218,64 @@ ul {
   pointer-events: none;
   border-radius: inherit;
 }
+
+/* Print Styles (PDF Export) */
+@media print {
+  * {
+    /* Disable all animations and transforms for print */
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: var(--bg-primary) !important;
+  }
+
+  /* Make header static so it prints at the top */
+  header {
+    position: static !important;
+    padding: 1rem 0 !important;
+    border-radius: 0 !important;
+  }
+
+  /* Prevent page breaks inside cards */
+  .glass-card, .section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Expand horizontally scrolling image galleries */
+  div[style*="overflowX: auto"], div[style*="overflow-x: auto"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    overflow: visible !important;
+    gap: 1rem !important;
+  }
+
+  /* Adjust gallery images inside print */
+  img, video {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Hide print-unnecessary elements (like the modal overlay or full screen menus if any) */
+  .ReactModalPortal, [style*="z-index: 1000"] {
+    display: none !important;
+  }
+
+  /* Reset container widths */
+  .container {
+    max-width: 100% !important;
+    padding: 0 2rem !important;
+  }
+}
