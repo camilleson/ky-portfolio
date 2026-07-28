@@ -38,7 +38,8 @@ const projects = [
     desc: '마켓컬리 회원들이 각자의 레시피와 생활 팁 등을 공유할 수 있는 커뮤니티 사이트 (마켓컬리 해커톤 본선 진출)',
     tech: ['Next.js', 'Styled-component', 'Git', 'Github'],
     links: [
-      { type: 'youtube', url: 'https://www.youtube.com/watch?v=Bk5nmkSkW0U' }
+      { type: 'youtube', url: 'https://www.youtube.com/watch?v=Bk5nmkSkW0U' },
+      { type: 'link', url: 'https://velog.io/@ka0son/series/%ED%95%B4%EC%BB%A4%ED%86%A4' }
     ],
     details: [
       '레시피 상세페이지 구현: 단락별로 프로필, 재료, 구매 제품, 요리순서, 댓글 등으로 컴포넌트 분리하여 재사용성 향상',
@@ -53,7 +54,9 @@ const projects = [
     role: 'Frontend Developer',
     desc: 'Myrealtrip을 참조하여 항공권 예매 웹 Ourtrip 제작',
     tech: ['React', 'Styled-component', 'Git', 'Github'],
-    links: [],
+    links: [
+      { type: 'link', url: 'https://velog.io/@ka0son/Ourtrip-2%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0%EB%A1%9D' }
+    ],
     details: [
       'useLocation을 이용해 조건에 따라 Navigation bar style을 동적으로 변화하도록 구현',
       '마이페이지와 예약상세페이지 제작, 동적라우팅을 활용하여 예약 정보에 따른 로직 구현'
@@ -66,7 +69,8 @@ const projects = [
     desc: 'Osulloc을 모티브로한 차 브랜드 웹 Wesulloc 구현',
     tech: ['React', 'JavaScript', 'SCSS', 'Git', 'Github'],
     links: [
-      { type: 'youtube', url: 'https://www.youtube.com/watch?v=hi08z17A2s0' }
+      { type: 'youtube', url: 'https://www.youtube.com/watch?v=hi08z17A2s0' },
+      { type: 'link', url: 'https://velog.io/@ka0son/Wesulloc-1%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0%EB%A1%9D' }
     ],
     details: [
       '메인페이지 담당: Banner carousel과 card 형식의 Product carousel 구현',

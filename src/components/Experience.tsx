@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const experiences = [
   {
@@ -32,7 +32,6 @@ const experiences = [
     details: [
       'Shoplive SDK 기반 라이브 커머스 프론트엔드 구축 및 트러블슈팅',
       ' - [해결] 동일 세션 다중 접속 시 세션 끊김 문제: 컴포넌트 렌더링 횟수를 제어하여 최소 호출로 최적화',
-      ' - [해결] iOS 채팅 입력 시 화면 줌인(깨짐) 현상 방지: 동적 뷰포트 메타태그 주입으로 포커스 줌 차단',
       'Apple / Naver / Kakao OAuth 간편 로그인 및 회원 정보 관리 고도화',
       ' - 로그인 유형(일반/SNS)에 따라 수정 가능한 정보 항목을 동적으로 분기 처리하여 보안성 확보',
       '어드민 메인 페이지 및 스케줄 관리 시스템 구축',
@@ -71,6 +70,141 @@ const experiences = [
     ]
   }
 ];
+
+const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], images?: string[], onMediaClick: (media: {type: 'image'|'video', src: string}) => void }) => {
+  const allMedia = [
+    ...(videos || []).map(v => ({ type: 'video' as const, src: v })),
+    ...(images || []).map(i => ({ type: 'image' as const, src: i }))
+  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (allMedia.length === 0) return null;
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex(prev => (prev === 0 ? allMedia.length - 1 : prev - 1));
+  };
+  
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex(prev => (prev === allMedia.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div style={{ position: 'relative', width: '100%', margin: '0 auto' }}>
+      <div style={{ 
+        overflow: 'hidden', 
+        borderRadius: '8px',
+        border: '1px solid var(--border-color)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+        position: 'relative',
+        backgroundColor: 'var(--bg-secondary, rgba(0,0,0,0.02))',
+        height: 'clamp(200px, 40vh, 400px)'
+      }}>
+        <div style={{
+          display: 'flex',
+          height: '100%',
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transition: 'transform 0.3s ease-in-out'
+        }}>
+          {allMedia.map((media, idx) => (
+            <div key={idx} style={{ minWidth: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {media.type === 'video' ? (
+                <video 
+                  src={media.src} 
+                  controls 
+                  muted 
+                  autoPlay 
+                  loop
+                  onClick={() => onMediaClick(media)}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer' }} 
+                />
+              ) : (
+                <img 
+                  src={media.src} 
+                  alt="" 
+                  onClick={() => onMediaClick(media)}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer' }} 
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {allMedia.length > 1 && (
+        <>
+          <button 
+            onClick={handlePrev}
+            style={{
+              position: 'absolute',
+              top: 'calc(50% - 12px)',
+              left: '8px',
+              transform: 'translateY(-50%)',
+              background: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '50%',
+              width: '36px',
+              height: '36px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              zIndex: 10,
+              color: '#333'
+            }}
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button 
+            onClick={handleNext}
+            style={{
+              position: 'absolute',
+              top: 'calc(50% - 12px)',
+              right: '8px',
+              transform: 'translateY(-50%)',
+              background: 'rgba(255, 255, 255, 0.9)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '50%',
+              width: '36px',
+              height: '36px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              zIndex: 10,
+              color: '#333'
+            }}
+          >
+            <ChevronRight size={20} />
+          </button>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px', flexWrap: 'wrap' }}>
+            {allMedia.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                style={{
+                  width: idx === currentIndex ? '24px' : '8px',
+                  height: '8px',
+                  borderRadius: '4px',
+                  background: idx === currentIndex ? 'var(--text-primary)' : 'var(--border-color)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease-in-out',
+                  padding: 0
+                }}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 const Experience = () => {
   const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string } | null>(null);
@@ -129,53 +263,7 @@ const Experience = () => {
               {((exp.images && exp.images.length > 0) || (exp.videos && exp.videos.length > 0)) && (
                 <div style={{ marginTop: '1.5rem' }}>
                   <h4 className="text-small" style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontWeight: 600 }}>📸 프로젝트 미리보기</h4>
-                  <div style={{ 
-                    display: 'flex', 
-                    gap: '1rem', 
-                    overflowX: 'auto', 
-                    paddingBottom: '1rem',
-                    scrollSnapType: 'x mandatory'
-                  }}>
-                    {exp.videos?.map((vid, idx) => (
-                      <video 
-                        key={`vid-${idx}`} 
-                        src={vid} 
-                        controls
-                        muted
-                        autoPlay
-                        loop
-                        onClick={() => setSelectedMedia({ type: 'video', src: vid })}
-                        style={{ 
-                          height: '240px', 
-                          objectFit: 'cover', 
-                          borderRadius: '8px',
-                          border: '1px solid var(--border-color)',
-                          scrollSnapAlign: 'start',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                          flexShrink: 0,
-                          cursor: 'pointer'
-                        }} 
-                      />
-                    ))}
-                    {exp.images?.map((img, idx) => (
-                      <img 
-                        key={`img-${idx}`} 
-                        src={img} 
-                        alt={`${exp.company} screenshot ${idx + 1}`} 
-                        onClick={() => setSelectedMedia({ type: 'image', src: img })}
-                        style={{ 
-                          height: '240px', 
-                          objectFit: 'cover', 
-                          borderRadius: '8px',
-                          border: '1px solid var(--border-color)',
-                          scrollSnapAlign: 'start',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                          flexShrink: 0,
-                          cursor: 'pointer'
-                        }} 
-                      />
-                    ))}
-                  </div>
+                  <MediaCarousel videos={exp.videos} images={exp.images} onMediaClick={setSelectedMedia} />
                 </div>
               )}
             </div>
