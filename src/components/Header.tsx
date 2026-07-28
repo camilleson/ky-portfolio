@@ -31,12 +31,6 @@ const Header = () => {
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="header-left" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <div style={{ width: '32px', height: '2px', backgroundColor: 'var(--text-primary)' }} />
-            <div style={{ width: '32px', height: '2px', backgroundColor: 'var(--text-primary)' }} />
-            <div style={{ width: '32px', height: '2px', backgroundColor: 'var(--text-primary)' }} />
-          </button>
-          
           {/* Asterisk / Flower Logo Alternative */}
           <div style={{ fontSize: '2.5rem', color: 'var(--accent-light)', lineHeight: 1, marginTop: '8px' }}>
             ❋

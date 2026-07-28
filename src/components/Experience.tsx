@@ -116,6 +116,7 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
                   muted 
                   autoPlay 
                   loop
+                  playsInline
                   onClick={() => onMediaClick(media)}
                   style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer' }} 
                 />
@@ -247,10 +248,24 @@ const Experience = () => {
                 {exp.desc}
               </p>
 
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginLeft: '1rem', listStyleType: 'disc', color: 'var(--text-muted)' }}>
-                {exp.details.map((detail, idx) => (
-                  <li key={idx} style={{ lineHeight: 1.5, fontSize: '0.95rem' }}>{detail}</li>
-                ))}
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginLeft: '1rem', color: 'var(--text-muted)' }}>
+                {exp.details.map((detail, idx) => {
+                  const isSubItem = detail.startsWith(' - ');
+                  const content = isSubItem ? detail.substring(3) : detail;
+                  return (
+                    <li 
+                      key={idx} 
+                      style={{ 
+                        lineHeight: 1.5, 
+                        fontSize: '0.95rem',
+                        marginLeft: isSubItem ? '1.5rem' : '0',
+                        listStyleType: isSubItem ? 'circle' : 'disc'
+                      }}
+                    >
+                      {content}
+                    </li>
+                  );
+                })}
               </ul>
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
@@ -341,6 +356,7 @@ const Experience = () => {
                   src={selectedMedia.src} 
                   controls
                   autoPlay
+                  playsInline
                   style={{
                     maxWidth: '100%',
                     maxHeight: '90vh',

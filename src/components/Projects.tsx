@@ -8,7 +8,9 @@ const projects = [
     role: 'Frontend Developer',
     desc: '실시간 방송 환경에서 상품 노출부터 구매까지 이어지는 라이브 커머스 기능 개발',
     tech: ['Next.js', 'React', 'TypeScript'],
-    links: [],
+    links: [
+      { type: 'link', url: 'https://www.moomooz.co.kr/live/329' }
+    ],
     details: [
       'Shoplive SDK 기반 라이브 커머스 프론트엔드 구조 설계 및 구현',
       '실시간 방송 중 상품 노출, 상품 상세 이동, 구매 전환을 고려한 UI 구성',
@@ -92,34 +94,7 @@ const Projects = () => {
           MY PROJECT 🧢
         </h2>
 
-        {/* Tab Style Header matching leeboa.com */}
-        <div className="projects-tabs" style={{ 
-          display: 'flex', 
-          borderTop: '1px solid var(--border-color)', 
-          borderBottom: '1px solid var(--border-color)',
-          marginBottom: '2rem'
-        }}>
-          {['PERSONAL', 'TEAM', 'WORK'].map((tab, idx) => (
-            <div key={tab} style={{ 
-              flex: 1, 
-              padding: '1rem', 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center',
-              borderRight: idx !== 2 ? '1px solid var(--border-color)' : 'none',
-              background: idx === 1 ? 'rgba(0,0,0,0.02)' : 'transparent',
-              color: idx === 0 ? 'var(--text-primary)' : 'var(--text-muted)'
-            }}>
-              <span style={{ fontWeight: idx === 0 ? 500 : 300 }}>{tab}</span>
-              <div style={{ 
-                width: '16px', height: '16px', 
-                borderRadius: idx === 0 ? '4px' : '50%', 
-                backgroundColor: idx === 0 ? '#111' : 'transparent',
-                border: idx !== 0 ? '1px solid var(--border-color)' : 'none'
-              }} />
-            </div>
-          ))}
-        </div>
+
 
         <div className="projects-grid">
           {projects.map((project, index) => (
