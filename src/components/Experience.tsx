@@ -17,9 +17,21 @@ const experiences = [
       '지도 기반 UI로 혼잡도·잔여 좌석 정보 시각화',
       'fetcher를 React-Query 기반으로 개선',
       'CRA -> VITE로 빌드 환경 변경 (50% 빌드 속도 개선)',
+      'AI 카메라 관제 관리자 사이트 개발',
+      ' - AI카메라로 실시간으로 차량정보를 인식해서 부정주차 차량 여부 판별 및 부정주차 신고 기능 개발',
     ],
     videos: [
       '/images/parkingfriends/MicrosoftTeams-video.mp4'
+    ],
+    images: [
+      '/images/parkingfriends/BO1.png',
+      '/images/parkingfriends/BO2.png',
+      '/images/parkingfriends/BO3.png',
+      '/images/parkingfriends/BO4.png',
+      '/images/parkingfriends/BO5.png',
+      '/images/parkingfriends/BO6.png',
+      '/images/parkingfriends/BO7.png',
+      '/images/parkingfriends/BO8.png'
     ]
   },
   {
