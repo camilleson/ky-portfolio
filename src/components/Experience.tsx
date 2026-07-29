@@ -303,7 +303,7 @@ const ThoughtBlock = ({ detail }: { detail: any }) => {
       flexDirection: 'column',
       listStyle: 'none'
     }}>
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         style={{
           display: 'flex',
@@ -325,15 +325,15 @@ const ThoughtBlock = ({ detail }: { detail: any }) => {
           {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
       </button>
-      
+
       {isOpen && (
         <div style={{ padding: '0 1.25rem 1.25rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>AS-IS</span> 
+            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>AS-IS</span>
             {detail.problem}
           </div>
           <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>TO-BE</span> 
+            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>TO-BE</span>
             {detail.solution}
           </div>
         </div>
@@ -394,10 +394,10 @@ const Experience = () => {
                   const isSubItem = detail.startsWith(' - ');
                   const content = isSubItem ? detail.substring(3) : detail;
                   return (
-                    <li 
-                      key={idx} 
-                      style={{ 
-                        lineHeight: 1.5, 
+                    <li
+                      key={idx}
+                      style={{
+                        lineHeight: 1.5,
                         fontSize: '0.95rem',
                         marginLeft: isSubItem ? '1.5rem' : '0',
                         listStyleType: isSubItem ? 'circle' : 'disc'
