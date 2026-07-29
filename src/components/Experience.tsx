@@ -319,9 +319,9 @@ const ThoughtBlock = ({ detail }: { detail: any }) => {
           textAlign: 'left'
         }}
       >
-        <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
+        <h4 style={{ color: 'var(--text-primary)', fontSize: '0.8rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, flexWrap: 'wrap', wordBreak: 'keep-all' }}>
           💡 고민과 판단
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
         </h4>
         <div style={{ color: 'var(--text-muted)' }}>
           {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
