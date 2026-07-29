@@ -154,7 +154,7 @@ const experiences = [
   }
 ];
 
-const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], images?: string[], onMediaClick: (media: { type: 'image' | 'video', src: string }) => void }) => {
+const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], images?: string[], onMediaClick: (context: { mediaList: { type: 'image' | 'video', src: string }[], currentIndex: number }) => void }) => {
   const allMedia = [
     ...(videos || []).map(v => ({ type: 'video' as const, src: v })),
     ...(images || []).map(i => ({ type: 'image' as const, src: i }))
@@ -164,11 +164,13 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
   if (allMedia.length === 0) return null;
 
   const handlePrev = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     setCurrentIndex(prev => (prev === 0 ? allMedia.length - 1 : prev - 1));
   };
 
   const handleNext = (e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     setCurrentIndex(prev => (prev === allMedia.length - 1 ? 0 : prev + 1));
   };
@@ -200,14 +202,14 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
                   autoPlay
                   loop
                   playsInline
-                  onClick={() => onMediaClick(media)}
+                  onClick={() => onMediaClick({ mediaList: allMedia, currentIndex: idx })}
                   style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer' }}
                 />
               ) : (
                 <img
                   src={media.src}
                   alt=""
-                  onClick={() => onMediaClick(media)}
+                  onClick={() => onMediaClick({ mediaList: allMedia, currentIndex: idx })}
                   style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer' }}
                 />
               )}
@@ -222,14 +224,14 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
             onClick={handlePrev}
             style={{
               position: 'absolute',
-              top: 'calc(50% - 12px)',
+              top: '50%',
               left: '8px',
               transform: 'translateY(-50%)',
               background: 'rgba(255, 255, 255, 0.9)',
               border: '1px solid var(--border-color)',
               borderRadius: '50%',
-              width: '36px',
-              height: '36px',
+              width: '44px',
+              height: '44px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -239,20 +241,20 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
               color: '#333'
             }}
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={24} />
           </button>
           <button
             onClick={handleNext}
             style={{
               position: 'absolute',
-              top: 'calc(50% - 12px)',
+              top: '50%',
               right: '8px',
               transform: 'translateY(-50%)',
               background: 'rgba(255, 255, 255, 0.9)',
               border: '1px solid var(--border-color)',
               borderRadius: '50%',
-              width: '36px',
-              height: '36px',
+              width: '44px',
+              height: '44px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -262,7 +264,7 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
               color: '#333'
             }}
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={24} />
           </button>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '12px', flexWrap: 'wrap' }}>
@@ -343,7 +345,7 @@ const ThoughtBlock = ({ detail }: { detail: any }) => {
 };
 
 const Experience = () => {
-  const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string } | null>(null);
+  const [selectedMediaContext, setSelectedMediaContext] = useState<{ mediaList: { type: 'image' | 'video', src: string }[], currentIndex: number } | null>(null);
 
   return (
     <section id="experience" className="section container">
@@ -419,7 +421,7 @@ const Experience = () => {
               {((exp.images && exp.images.length > 0) || (exp.videos && exp.videos.length > 0)) && (
                 <div style={{ marginTop: '1.5rem' }}>
                   <h4 className="text-small" style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontWeight: 600 }}>📸 프로젝트 미리보기</h4>
-                  <MediaCarousel videos={exp.videos} images={exp.images} onMediaClick={setSelectedMedia} />
+                  <MediaCarousel videos={exp.videos} images={exp.images} onMediaClick={setSelectedMediaContext} />
                 </div>
               )}
             </div>
@@ -429,19 +431,19 @@ const Experience = () => {
 
       {/* Media Modal */}
       <AnimatePresence>
-        {selectedMedia && (
+        {selectedMediaContext && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedMedia(null)}
+            onClick={() => setSelectedMediaContext(null)}
             style={{
               position: 'fixed',
               top: 0,
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
               zIndex: 1000,
               display: 'flex',
               alignItems: 'center',
@@ -450,11 +452,11 @@ const Experience = () => {
             }}
           >
             <button
-              onClick={() => setSelectedMedia(null)}
+              onClick={() => setSelectedMediaContext(null)}
               style={{
                 position: 'absolute',
-                top: '2rem',
-                right: '2rem',
+                top: '1.5rem',
+                right: '1.5rem',
                 background: 'rgba(255, 255, 255, 0.1)',
                 border: 'none',
                 color: 'white',
@@ -469,10 +471,66 @@ const Experience = () => {
             >
               <X size={32} />
             </button>
+            
+            {selectedMediaContext.mediaList.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedMediaContext(prev => prev ? {
+                      ...prev,
+                      currentIndex: prev.currentIndex === 0 ? prev.mediaList.length - 1 : prev.currentIndex - 1
+                    } : null);
+                  }}
+                  style={{
+                    position: 'absolute',
+                    left: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: 'none',
+                    color: 'white',
+                    cursor: 'pointer',
+                    padding: '0.5rem',
+                    borderRadius: '50%',
+                    zIndex: 1001
+                  }}
+                >
+                  <ChevronLeft size={36} />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedMediaContext(prev => prev ? {
+                      ...prev,
+                      currentIndex: prev.currentIndex === prev.mediaList.length - 1 ? 0 : prev.currentIndex + 1
+                    } : null);
+                  }}
+                  style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: 'none',
+                    color: 'white',
+                    cursor: 'pointer',
+                    padding: '0.5rem',
+                    borderRadius: '50%',
+                    zIndex: 1001
+                  }}
+                >
+                  <ChevronRight size={36} />
+                </button>
+              </>
+            )}
+
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              key={selectedMediaContext.currentIndex}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               onClick={(e) => e.stopPropagation()}
               style={{
                 maxWidth: '90vw',
@@ -480,29 +538,29 @@ const Experience = () => {
                 position: 'relative'
               }}
             >
-              {selectedMedia.type === 'image' ? (
+              {selectedMediaContext.mediaList[selectedMediaContext.currentIndex].type === 'image' ? (
                 <img
-                  src={selectedMedia.src}
+                  src={selectedMediaContext.mediaList[selectedMediaContext.currentIndex].src}
                   alt="Enlarged view"
                   style={{
                     maxWidth: '100%',
                     maxHeight: '90vh',
                     objectFit: 'contain',
-                    borderRadius: '12px',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
                   }}
                 />
               ) : (
                 <video
-                  src={selectedMedia.src}
+                  src={selectedMediaContext.mediaList[selectedMediaContext.currentIndex].src}
                   controls
                   autoPlay
                   playsInline
                   style={{
                     maxWidth: '100%',
                     maxHeight: '90vh',
-                    borderRadius: '12px',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
+                    borderRadius: '8px',
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.5)'
                   }}
                 />
               )}
