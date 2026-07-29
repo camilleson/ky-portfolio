@@ -13,48 +13,48 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {/* Scattered Typography with Emojis */}
-          <div style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
             gap: '2rem',
-            marginBottom: '4rem', 
-            padding: '2rem 0' 
+            marginBottom: '4rem',
+            padding: '2rem 0'
           }}>
-            <h1 className="title-lg" style={{ 
+            <h1 className="title-lg" style={{
               alignSelf: 'flex-start', textAlign: 'left',
               color: 'var(--text-primary)', letterSpacing: '-0.03em', margin: 0,
               display: 'flex', alignItems: 'center', gap: '1rem'
             }}>
-              INTUITIVE UI 
-              <motion.img 
-                src={laptopImg} 
-                alt="laptop" 
+              INTUITIVE UI
+              <motion.img
+                src={laptopImg}
+                alt="laptop"
                 style={{ height: 'clamp(3rem, 6vw, 4.5rem)', objectFit: 'contain' }}
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
             </h1>
-            <h1 className="title-lg" style={{ 
+            <h1 className="title-lg" style={{
               alignSelf: 'center', textAlign: 'center',
               color: 'var(--text-primary)', letterSpacing: '-0.03em', margin: 0
             }}>
               USER ENGAGEMENT
             </h1>
-            <h1 className="title-lg" style={{ 
+            <h1 className="title-lg" style={{
               alignSelf: 'flex-end', textAlign: 'right',
               color: 'var(--text-primary)', letterSpacing: '-0.03em', margin: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '1rem'
             }}>
-              <motion.img 
-                src={dumbbellImg} 
-                alt="dumbbell" 
+              <motion.img
+                src={dumbbellImg}
+                alt="dumbbell"
                 style={{ height: 'clamp(3rem, 6vw, 4.5rem)', objectFit: 'contain' }}
                 animate={{ y: [0, -15, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               />
               PERFORMANCE
             </h1>
-            <h1 className="title-lg" style={{ 
+            <h1 className="title-lg" style={{
               alignSelf: 'flex-start', textAlign: 'left',
               color: 'var(--text-primary)', letterSpacing: '-0.03em', margin: 0
             }}>
@@ -82,9 +82,9 @@ const Hero = () => {
               textShadow: '0 0 10px rgba(52, 211, 153, 0.5)',
               wordBreak: 'keep-all'
             }}>
-              HELLO WORLD!<span className="hide-on-mobile"><br /></span>AND I AM KAYOUNG ✌️
+              HELLO WORLD!<span className="hide-on-mobile"><br /></span><br /> I AM KAYOUNG ✌️
             </h2>
-            
+
             <div style={{
               position: 'absolute',
               bottom: '1rem',
@@ -105,10 +105,10 @@ const Hero = () => {
               동시에 개선하는 프론트엔드 개발자 <b>손가영</b>입니다.
             </p>
 
-            <div className="hero-contact" style={{ 
-              display: 'flex', 
-              flexWrap: 'wrap', 
-              justifyContent: 'center', 
+            <div className="hero-contact" style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
               gap: '2rem',
               background: 'rgba(255,255,255,0.5)',
               padding: '1.5rem',

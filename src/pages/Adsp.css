@@ -1,0 +1,303 @@
+.adsp-container {
+  background-color: #f0f0f0;
+  padding: 2rem;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.adsp-page {
+  background-color: white;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 2rem;
+  position: relative;
+}
+
+.adsp-header {
+  background-color: #d97775;
+  color: white;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.adsp-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.adsp-header .author {
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.adsp-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.adsp-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.adsp-section {
+  position: relative;
+}
+
+.adsp-section-title {
+  display: block !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-left: 1rem;
+  line-height: 1.4;
+  word-break: keep-all; /* prevent awkward word breaks like 지혜\n를 */
+}
+
+.adsp-section-title::before {
+  content: '■';
+  font-size: 0.8rem;
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+}
+
+.red-star {
+  position: absolute;
+  top: -5px;
+  left: -15px;
+  width: 20px;
+  height: 20px;
+  color: #e53935;
+  z-index: 10;
+}
+
+.adsp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.adsp-table th, .adsp-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+
+.adsp-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  text-align: center;
+  word-break: keep-all; /* 단어 단위로 유지 */
+  min-width: 90px; /* 세로줄로 깨지는 것 방지 */
+}
+
+.adsp-ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.adsp-ul li {
+  margin-bottom: 0.3rem;
+  padding-left: 1rem;
+  text-indent: -1rem;
+}
+
+.adsp-ul li::before {
+  content: '- ';
+}
+
+.adsp-ul .bullet-dot::before {
+  content: '• ';
+}
+.adsp-ul .bullet-none::before {
+  content: '';
+}
+
+/* Specific component styles */
+.highlight-text {
+  color: #c62828;
+  font-weight: bold;
+}
+
+.blue-text {
+  color: #1565c0;
+}
+.green-text {
+  color: #2e7d32;
+}
+
+.box-layout {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.seci-model {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+  border: 1px dashed #999;
+  padding: 1.5rem;
+  border-radius: 8px;
+  position: relative;
+}
+
+.seci-arrow {
+  position: absolute;
+  font-size: 1.5rem;
+  color: #999;
+}
+
+.seci-box {
+  background-color: #e3f2fd;
+  border-radius: 20px;
+  padding: 0.5rem;
+  font-weight: bold;
+  display: inline-block;
+}
+
+/* Custom Table Colors */
+.bg-orange { background-color: #fbe9e7 !important; }
+.bg-yellow { background-color: #fff9c4 !important; }
+.bg-green { background-color: #e8f5e9 !important; }
+.bg-blue { background-color: #e3f2fd !important; }
+.bg-purple { background-color: #f3e5f5 !important; }
+
+.text-small {
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.text-center { text-align: center; }
+
+/* CRISP-DM arrows */
+.arrow-down {
+  text-align: center;
+  color: #e53935;
+  font-weight: bold;
+  margin: 2px 0;
+}
+
+/* Graph container */
+.graph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.graph-img-placeholder {
+  width: 100%;
+  max-width: 300px;
+  border: 1px dashed #ccc;
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+}
+
+/* Tabs */
+.adsp-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.adsp-tab-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid #d97775;
+  background-color: white;
+  color: #d97775;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.adsp-tab-btn:hover {
+  background-color: #fcf1f1;
+}
+
+.adsp-tab-btn.active {
+  background-color: #d97775;
+  color: white;
+  box-shadow: 0 4px 6px rgba(217, 119, 117, 0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .adsp-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .adsp-page {
+    padding: 1rem;
+  }
+  
+  .adsp-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .adsp-col {
+    width: 100%;
+  }
+
+  .adsp-section {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .adsp-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .adsp-header h1 {
+    font-size: 1.4rem;
+  }
+  
+  .adsp-table {
+    min-width: 450px; /* Ensure tables don't squish too much, allow scroll */
+  }
+  
+  .adsp-tabs {
+    gap: 0.5rem;
+  }
+  
+  .adsp-tab-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
