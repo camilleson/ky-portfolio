@@ -362,7 +362,9 @@ const Experience = () => {
                     );
                   }
 
-                  const isSubItem = typeof detail === 'string' && detail.startsWith(' - ');
+                  if (typeof detail !== 'string') return null;
+
+                  const isSubItem = detail.startsWith(' - ');
                   const content = isSubItem ? detail.substring(3) : detail;
                   return (
                     <li 
