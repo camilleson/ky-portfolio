@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
 
 const experiences = [
   {
@@ -290,6 +290,58 @@ const MediaCarousel = ({ videos, images, onMediaClick }: { videos?: string[], im
   );
 };
 
+const ThoughtBlock = ({ detail }: { detail: any }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div style={{
+      backgroundColor: 'var(--bg-tertiary, rgba(100, 116, 139, 0.05))',
+      borderLeft: '4px solid var(--accent)',
+      borderRadius: '0 8px 8px 0',
+      margin: '0.5rem 0 1.5rem -1rem',
+      display: 'flex',
+      flexDirection: 'column',
+      listStyle: 'none'
+    }}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%',
+          padding: '1.25rem',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          textAlign: 'left'
+        }}
+      >
+        <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
+          💡 고민과 판단
+          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
+        </h4>
+        <div style={{ color: 'var(--text-muted)' }}>
+          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        </div>
+      </button>
+      
+      {isOpen && (
+        <div style={{ padding: '0 1.25rem 1.25rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>AS-IS</span> 
+            {detail.problem}
+          </div>
+          <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+            <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>TO-BE</span> 
+            {detail.solution}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Experience = () => {
   const [selectedMedia, setSelectedMedia] = useState<{ type: 'image' | 'video', src: string } | null>(null);
 
@@ -334,32 +386,7 @@ const Experience = () => {
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginLeft: '1rem', color: 'var(--text-muted)' }}>
                 {exp.details.map((detail, idx) => {
                   if (typeof detail === 'object' && detail.type === 'thought') {
-                    return (
-                      <div key={idx} style={{
-                        padding: '1.25rem',
-                        backgroundColor: 'var(--bg-tertiary, rgba(100, 116, 139, 0.05))',
-                        borderLeft: '4px solid var(--accent)',
-                        borderRadius: '0 8px 8px 0',
-                        margin: '0.5rem 0 1.5rem -1rem',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.5rem',
-                        listStyle: 'none'
-                      }}>
-                        <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
-                          💡 고민과 판단
-                          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
-                        </h4>
-                        <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                          <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>AS-IS</span> 
-                          {detail.problem}
-                        </div>
-                        <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                          <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>TO-BE</span> 
-                          {detail.solution}
-                        </div>
-                      </div>
-                    );
+                    return <ThoughtBlock key={idx} detail={detail} />;
                   }
 
                   if (typeof detail !== 'string') return null;
