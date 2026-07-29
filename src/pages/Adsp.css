@@ -273,7 +273,6 @@
 
   .adsp-section {
     width: 100%;
-    overflow-x: auto;
     padding-bottom: 1rem;
   }
 
@@ -288,7 +287,14 @@
   }
   
   .adsp-table {
-    min-width: 450px; /* Ensure tables don't squish too much, allow scroll */
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .adsp-table th, .adsp-table td {
+    min-width: 100px;
   }
   
   .adsp-tabs {
