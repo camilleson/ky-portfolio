@@ -317,22 +317,22 @@ const ThoughtBlock = ({ detail }: { detail: any }) => {
           textAlign: 'left'
         }}
       >
-        <h4 style={{ color: 'var(--text-primary)', fontSize: '1rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
+        <h4 style={{ color: 'var(--text-primary)', fontSize: '0.9rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
           💡 고민과 판단
-          <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 400 }}>| {detail.title}</span>
         </h4>
         <div style={{ color: 'var(--text-muted)' }}>
-          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </div>
       </button>
 
       {isOpen && (
         <div style={{ padding: '0 1.25rem 1.25rem 1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
             <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>AS-IS</span>
             {detail.problem}
           </div>
-          <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
             <span style={{ fontWeight: 600, color: 'var(--accent)', marginRight: '0.4rem' }}>TO-BE</span>
             {detail.solution}
           </div>
